@@ -33,6 +33,8 @@ public class Parser extends DefaultHandler {
 	public static final String COMPLETE_TIME_TAG = "CompleteTime";
 	public static final String COMMAND_KEY_TAG = "CommandKey";
 	public static final String FAULT_STRUCT_TAG = "FaultStruct";
+	public static final String OBJECT_NAME_TAG = "ObjectName";
+	public static final String INSTANCE_NUMBER_TAG = "InstanceNumber";
 
 	protected SAXParserFactory factory;
 	protected XMLReader reader;
@@ -51,6 +53,8 @@ public class Parser extends DefaultHandler {
 	private String startTime;
 	private String completeTime;
 	private String commandKey;
+	private String objectName;
+	private String instanceNumber;
 	private Fault fault;
 
 	/*
@@ -170,6 +174,14 @@ public class Parser extends DefaultHandler {
 		return this.fault;
 	}
 
+	public String getObjectName() {
+		return this.objectName;
+	}
+
+	public String getInstanceNumber() {
+		return this.instanceNumber;
+	}
+
 	private static InputSource getStringAsSource(String xml) {
 		if (xml != null && !xml.equals("")) {
 			StringReader xmlReader = new StringReader(xml);
@@ -204,6 +216,10 @@ public class Parser extends DefaultHandler {
 			this.completeTime = new String(currTextContent);
 		} else if (COMMAND_KEY_TAG.equals(localName)) {
 			this.commandKey = new String(currTextContent);
+		} else if (OBJECT_NAME_TAG.equals(localName)) {
+			this.objectName = new String(currTextContent);
+		} else if (INSTANCE_NUMBER_TAG.equals(localName)) {
+			this.instanceNumber = new String(currTextContent);
 		}
 	}
 

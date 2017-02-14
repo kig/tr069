@@ -6,6 +6,8 @@ import java.util.Map;
 import com.owera.xaps.base.Log;
 
 public class TR069Method {
+	public static final String ADD_OBJECT = "AddObject";
+
 	public static final String EMPTY = "Empty";
 
 	public static final String INFORM = "Inform";
@@ -73,6 +75,10 @@ public class TR069Method {
 			abbrevMap.put(SET_PARAMETER_VALUES, "SPV");
 			requestMap.put(SET_PARAMETER_VALUES, new HTTPRequestAction(SPVres.class, SPVDecision.class));
 			responseMap.put(SET_PARAMETER_VALUES, new HTTPResponseAction("buildSPV"));
+
+			abbrevMap.put(ADD_OBJECT, "AddObject");
+			requestMap.put(ADD_OBJECT, new HTTPRequestAction(AddObjectRequest.class, AddObjectDecision.class));
+			responseMap.put(ADD_OBJECT, new HTTPResponseAction("buildAddObject"));
 			
 			abbrevMap.put(GET_PARAMETER_ATTRIBUTES, "GPA");
 			requestMap.put(GET_PARAMETER_ATTRIBUTES, new HTTPRequestAction(GPAres.class, GPADecision.class));
